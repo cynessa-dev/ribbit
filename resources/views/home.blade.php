@@ -6,6 +6,12 @@
     <title>Ribbit | Hop on Conversations!</title>
 </head>
 <body>
+    @auth
+
+    <h1>Welcome, {{ auth()->user()->name }}</h1>
+
+    @else
+
     <div style="border: 3px solid black; padding: 12px;">
         <h2>Register</h2>
         <form action="/register" method="POST">
@@ -16,5 +22,8 @@
             <button>Register</button>
         </form>
     </div>
+
+    @endauth
+    
 </body>
 </html>
