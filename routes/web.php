@@ -7,3 +7,5 @@ use App\Http\Controllers\userController;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::post('/register', [userController::class, 'register']);
