@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
+class userController extends Controller
+{
+    public function register(Request $request) {
+        $incomingFields = $request->validate([
+            'name' => ['required', 'min:3', 'max:20'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => ['required', 'min:8', 'max:15']
+        ]);
+
+        $incomingFields['password'] = bcrypt($incomingFields['password']);
+        User::create($incomingFields);
+
+        return redirect('/');
+    }
+}
