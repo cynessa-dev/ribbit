@@ -30,4 +30,22 @@ class postController extends Controller
 
         return view('edit-post', ['post' => $post]);
     }
+
+    public function actuallyUpdatePost(Request $request, Post $post) {
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/');
+        }
+
+        $incomingFields = $request->validate([
+            'title' => ['required', 'max:100'],
+            'body' => ['required', 'max:500']
+        ]);
+
+        $incomingFields['title'] = strip_tags($incomingFields['title']);
+        $incomingFields['body'] = strip_tags($incomingFields['body']);
+
+        $post->update($incomingFields);
+
+        return redirect('/');
+    }
 }
