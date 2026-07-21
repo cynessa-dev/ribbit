@@ -24,3 +24,4 @@ Route::post('/logout', [userController::class, 'logout']);
 // Post-related routes
 Route::post('/create-post', [postController::class, 'createPost']);
 Route::get('/edit-post/{post}', [postController::class, 'showEditScreen']);
+Route::put('/edit-post/{post}', [postController::class, 'actuallyUpdatePost']);
