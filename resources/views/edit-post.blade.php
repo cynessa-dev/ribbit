@@ -9,9 +9,10 @@
     <h1>Edit Post</h1>
     <form action="/edit-post/{{ $post->id }}" method="POST">
         @csrf
+        @method('PUT')
         <input type="text" name="title" placeholder="title" value="{{ $post->title }}" />
         <textarea name="body" placeholder="Content goes here...">{{ $post->body }}</textarea>
-        <button>Create Post</button>
+        <button>Save Changes</button>
     </form>
 </body>
 </html>
