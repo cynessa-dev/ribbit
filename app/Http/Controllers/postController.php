@@ -22,4 +22,12 @@ class postController extends Controller
 
         return redirect('/');
     }
+
+    public function showEditScreen(Request $request, Post $post) {
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/');
+        }
+
+        return view('edit-post', ['post' => $post]);
+    }
 }
