@@ -48,4 +48,14 @@ class postController extends Controller
 
         return redirect('/');
     }
+
+    public function deletePost(Post $post) {
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/');
+        }
+
+        $post->delete();
+
+        return redirect('/');
+    }
 }
